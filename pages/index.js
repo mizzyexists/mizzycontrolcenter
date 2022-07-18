@@ -1,36 +1,35 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
-import Login from './components/Login';
 import Dash from './Dash';
+import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
 
 
 const Main = () => {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+  const router = useRouter()
 
-  useEffect (() => {
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
+  useEffect(() => {
+    const checkForUser = async () => {
+      const loggedUser = await user;
+      if (!loggedUser && isLoading === false) {
+        router.push('/api/auth/login');
+      }
     }
-  }, [user]);
+    checkForUser();
+  }, [isLoading, router, user])
 
   return (
     <div>
       <Head>
-        <title>My Command Center</title>
-        <meta name="description" content="My Command Center" />
+        <title>MizzyOps Command Center</title>
+        <meta name="description" content="MizzyOps Command Center" />
         <link rel="icon" type="image/png" href="/MizzyLogoNew.png" />
       </Head>
       <main>
-        {
-          loggedIn ? (<Dash loggedIn={loggedIn} setLoggedIn={setLoggedIn} />) :
-          (<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)
-        }
+        { user ? (<Dash user={user}/>) : (<></>)}
       </main>
     </div>
   )
