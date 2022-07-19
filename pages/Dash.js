@@ -3,13 +3,33 @@
 import Link from "next/link";
 import 'animate.css';
 import Cloudflare from "./components/Cloudflare";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import { particleOptions } from "./models/particleOptions";
 
-const Dash = (props) => { 
+
+const Dash = (props) => {
+
+    const particlesInit = async (main) => {
+        await loadFull(main);
+    };
+
+    const particlesLoaded = (container) => {
+        
+    };
+
     return (
         <div className="dash">
-            <div className="dash-header animate__animated animate__fadeInDown animate__slower">
-                <img className="mizzy-logo" src="/MizzyLogoNew.png" alt="Mizzy Logo" />
-                <h1>MizzyOps<br/>Command Center</h1>
+            <Particles 
+                id="tsparticles"
+                className="animate__animated animate__fadeIn animate__slower"
+                init={particlesInit}
+                loaded={particlesLoaded}
+                options={particleOptions}
+            />
+            <div className="dash-header">
+                <img className="mizzy-logo animate__animated animate__fadeInDown animate__slower" src="/MizzyLogoNew.png" alt="Mizzy Logo" />
+                <h1 className="logo-text animate__animated animate__fadeInRight animate__slower">Morpheus</h1>
             </div>
             <div className="dash-body">
                 <div className="dash-body-left animate__animated animate__fadeInLeft animate__slower">
@@ -37,8 +57,8 @@ const Dash = (props) => {
                     </div>
                 </div>
             </div>
-            
-            <a className="btn dash-header animate__animated animate__fadeInUp animate__slower" href="/api/auth/logout">Logout</a>
+
+            <a className="btn animate__animated animate__fadeInUp animate__slower" href="/api/auth/logout">Logout</a>
         </div>
     )
 }

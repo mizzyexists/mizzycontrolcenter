@@ -11,7 +11,6 @@ const Cloudflare = () => {
         const fetchData = async () => {
             const res = await fetch("/api/cloudflare/getSites");
             const json = await res.json();
-            console.dir(json);
             setData(json.result);
             setLoading(false);
         }

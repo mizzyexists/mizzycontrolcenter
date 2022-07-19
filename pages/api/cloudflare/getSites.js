@@ -3,7 +3,7 @@ const getSites = async (req, res) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer zDIJ4B_zGHrlPgyRq7GUP61vSvhBm71Nj0kqf2Lf`,
+            'Authorization': `Bearer ${process.env.CLOUDFLARE_API_KEY}`,
         },
     });
     const sites = await response.json();
