@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Head from 'next/head'
 import 'animate.css';
 import Cloudflare from "./components/Cloudflare";
 import Particles from "react-tsparticles";
@@ -20,6 +21,9 @@ const Dash = (props) => {
 
     return (
         <div className="dash">
+            <Head>
+                <title>Morpheus - Dashboard</title>
+            </Head>
             <Particles 
                 id="tsparticles"
                 className="animate__animated animate__fadeIn animate__slower"

@@ -1,7 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useModals } from '@mantine/modals';
+import Head from 'next/head'
+
 
 
 
@@ -87,6 +90,10 @@ const Login = () => {
 
         return (
             <div className="input-screen">
+                <Head>
+                    <title>Morpheus - Terminal</title>
+                </Head>
+                {/* <h1><img src="/MizzyLogoNew.png" width='60px' alt='Morpheus'/></h1> */}
                 <h1>^</h1>
                 <form>
                     {enteredPasscode == '' ? (
